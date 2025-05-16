@@ -57,9 +57,10 @@ contract StakingApp is Ownable {
     // Withdraw tokens
     function withdrawTokens() external {
         // CEI Pattern
+        uint256 tokenBalance_ = tokenBalance[msg.sender];
         tokenBalance[msg.sender] = 0;
 
-        IERC20(stakingToken).transfer(msg.sender, fixedStakingAmount);
+        IERC20(stakingToken).transfer(msg.sender, tokenBalance_);
 
         emit TokensWithdraw(msg.sender, fixedStakingAmount);
     }
