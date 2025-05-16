@@ -27,7 +27,13 @@ contract StakingApp is Ownable {
     event EtherReceived(uint256 amount_);
 
     // === Constructor ===
-    constructor(address stakingToken_, uint256 stakingPeriod_, uint256 fixedStakingAmount_, uint256 rewardPerPeriod_, address owner_) Ownable(owner_) {
+    constructor(
+        address stakingToken_,
+        uint256 stakingPeriod_,
+        uint256 fixedStakingAmount_,
+        uint256 rewardPerPeriod_,
+        address owner_
+    ) Ownable(owner_) {
         stakingToken = stakingToken_;
         stakingPeriod = stakingPeriod_;
         fixedStakingAmount = fixedStakingAmount_;
@@ -49,7 +55,8 @@ contract StakingApp is Ownable {
     }
 
     // Withdraw tokens
-    function withdrawTokens() external { // CEI Pattern
+    function withdrawTokens() external {
+        // CEI Pattern
         tokenBalance[msg.sender] = 0;
 
         IERC20(stakingToken).transfer(msg.sender, fixedStakingAmount);
@@ -71,7 +78,7 @@ contract StakingApp is Ownable {
         depositTime[msg.sender] = block.timestamp;
 
         // Transfer rewards
-        (bool success,) = msg.sender.call{value: rewardPerPeriod}("");       
+        (bool success,) = msg.sender.call{value: rewardPerPeriod}("");
 
         require(success, "Transfer failed");
 

@@ -7,7 +7,6 @@ import "forge-std/Test.sol";
 import "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
 contract StakingTokenTest is Test {
-    
     StakingToken stakingToken;
     string name = "Staking Token";
     string token = "STK";
@@ -33,5 +32,4 @@ contract StakingTokenTest is Test {
         assert(balanceAfter_ == balanceBefore_ + amount_);
         vm.stopPrank();
     }
-
 }
