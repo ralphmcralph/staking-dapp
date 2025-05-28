@@ -1,66 +1,121 @@
-## Foundry
+# 💎 StakingApp – Fixed-Amount Token Staking Smart Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+![Solidity](https://img.shields.io/badge/Solidity-0.8.24-blue?style=flat&logo=solidity)
+![License](https://img.shields.io/badge/License-LGPL--3.0--only-green?style=flat)
+![Tested](https://img.shields.io/badge/Tested%20With-Foundry-orange?style=flat)
+![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen?style=flat)
 
-Foundry consists of:
+---
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## 📌 Description
 
-## Documentation
+**StakingApp** is a simple and efficient staking smart contract system that allows users to deposit a fixed amount of ERC20 tokens and receive ETH rewards after a staking period. Built in Solidity with full test coverage using **Foundry**, it demonstrates:
 
-https://book.getfoundry.sh/
+- Token-based staking mechanism
+- Fixed deposit and reward amounts
+- Robust access control with `Ownable`
+- ETH funding for rewards
+- Time-based staking logic
 
-## Usage
+This project is designed as a showcase to impress recruiters, demonstrating smart contract skills, test-driven development, and best practices.
 
-### Build
+---
 
-```shell
-$ forge build
+## 🧱 Components
+
+### 🔹 StakingApp.sol
+
+Main staking contract logic.
+
+### 🔹 StakingToken.sol
+
+ERC20-compliant token used for staking.
+
+### 🔹 Tests
+
+Includes full coverage of deployment, permissions, staking, reward claiming, and reverts using **Foundry**.
+
+---
+
+## 📁 Structure
+
+```
+├── src/
+│   ├── StakingApp.sol
+│   └── StakingToken.sol
+├── test/
+│   ├── StakingApp.t.sol
+│   └── StakingToken.t.sol
 ```
 
-### Test
+---
 
-```shell
-$ forge test
+## 🚀 Features
+
+### ✅ depositTokens
+
+Allows users to stake exactly 10 tokens.
+
+```solidity
+function depositTokens(uint256 tokenAmount_) external
 ```
 
-### Format
+### 🔁 withdrawTokens
 
-```shell
-$ forge fmt
+Users can withdraw their staked tokens.
+
+```solidity
+function withdrawTokens() external
 ```
 
-### Gas Snapshots
+### 🎁 claimRewards
 
-```shell
-$ forge snapshot
+After `stakingPeriod`, users can claim ETH rewards.
+
+```solidity
+function claimRewards() external
 ```
 
-### Anvil
+### ⚙️ changeStakingPeriod
 
-```shell
-$ anvil
+Admin can update staking duration.
+
+```solidity
+function changeStakingPeriod(uint256 newPeriod) external onlyOwner
 ```
 
-### Deploy
+### 💵 receive()
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+Only owner can fund contract with ETH.
+
+```solidity
+receive() external payable onlyOwner
 ```
 
-### Cast
+---
 
-```shell
-$ cast <subcommand>
-```
+## 🧪 Testing
 
-### Help
+Tested with **Foundry** covering:
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+- Owner-only access control
+- ETH funding mechanics
+- Token deposits, withdrawals
+- Time-warping and reward eligibility
+- All error conditions and revert paths
+
+100% coverage achieved (lines, functions, branches).
+
+---
+
+## 📄 License
+
+Licensed under **LGPL-3.0-only**.
+
+---
+
+## 🙋‍♂️ Author & Contributions
+
+Built as a demonstration project to strengthen smart contract development skills and showcase capabilities to potential employers.
+
+Open to ideas, suggestions, and PRs 🚀
