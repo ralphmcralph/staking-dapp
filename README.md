@@ -116,6 +116,6 @@ Licensed under **LGPL-3.0-only**.
 
 ## 🙋‍♂️ Author & Contributions
 
-Built as a demonstration project to strengthen smart contract development skills and showcase capabilities to potential employers.
+Built as a demonstration project to strengthen smart contract development skills.
 
 Open to ideas, suggestions, and PRs 🚀
